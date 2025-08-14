@@ -1,0 +1,18 @@
+services:
+  outline:
+    image: ghcr.io/zonescape/outline-ss-server:latest
+    container_name: outline
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+    ports:
+      - "443:8080/tcp"
+      - "443:8080/udp"
+    volumes:
+      - ./config.yml:/srv/config.yml
+    environment:
+      - TZ=America/Chicago
+    command: [ "outline-ss-server", "-config", "/srv/config.yml", "-replay_history", "10000" ]

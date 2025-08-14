@@ -1,0 +1,10 @@
+services:
+  - listeners:
+      - type: tcp
+        address: ":8080"
+      - type: udp
+        address: ":8080"
+    keys:
+      - id: zonescape
+        cipher: chacha20-ietf-poly1305
+        secret: qwerty
